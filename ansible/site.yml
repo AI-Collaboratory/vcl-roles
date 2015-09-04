@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  remote_user: ubuntu
+  sudo: yes
+  gather_facts: yes
+
+  roles:
+   - characterization
+#   - heritrix
+#   - epadd

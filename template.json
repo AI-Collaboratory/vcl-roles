@@ -1,0 +1,37 @@
+{
+  "builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "availability_zone": "us-east-1c",
+      "source_ami": "ami-4f8fef2a",
+      "instance_type": "t2.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "Ubuntu {{isotime \"2006-01-02\"}}",
+      "tags": {
+        "Name": "Ubuntu Email Curation",
+        "OS_Version": "Ubuntu",
+        "Release": "Vivid 15.04",
+        "VNC_Shared": "yes",
+        "RDP_Shared": "yes"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+    "type": "shell",
+    "inline": [
+      "sudo apt-get update",
+      "sudo apt-get -y upgrade"]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/site.yml",
+      "playbook_dir": "ansible",
+      "group_vars": "/home/jansen/Dropbox/UMD-DCIC/Amazon/group_vars",
+      "inventory_groups": "vcl",
+      "extra_arguments": ["--limit localhost"],
+      "inventory_file": "/home/jansen/Dropbox/UMD-DCIC/Amazon/hosts"
+    }
+  ]
+}
