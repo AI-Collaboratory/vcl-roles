@@ -1,10 +1,11 @@
 ---
-- hosts: localhost
+- hosts: all
   remote_user: ubuntu
   sudo: yes
   gather_facts: yes
 
   roles:
-   - characterization
+    - datasets
+#   - characterization
 #   - heritrix
 #   - epadd

@@ -4,7 +4,7 @@
       "type": "amazon-ebs",
       "region": "us-east-1",
       "availability_zone": "us-east-1c",
-      "source_ami": "ami-4f8fef2a",
+      "source_ami": "ami-97fe9df2",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
       "ami_name": "Ubuntu {{isotime \"2006-01-02\"}}",
