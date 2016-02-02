@@ -6,6 +6,5 @@
 
   roles:
     - datasets
-#   - characterization
-#   - heritrix
-#   - epadd
+    - archivespace
+    - characterization

@@ -1,0 +1,21 @@
+---
+  - name: Install Java Package
+    apt: pkg={{ item }} state=installed update_cache=true
+    with_items:
+      - openjdk-8-jdk
+
+  - name: Download ArchiveSpace package
+    get_url: url=http://github.com/archivesspace/archivesspace/releases/download/v1.4.2/archivesspace-v1.4.2.zip dest=/tmp/temp.zip mode=0777
+
+  - name: Unzip ArchiveSpace distribution Packages
+    unarchive: src=/tmp/temp.zip dest=/home/dcic copy=no owner=dcic group=dcic
+
+  - file: path=/home/dcic/archivesspace recurse=yes state=directory owner=dcic group=dcic
+  #- file: path=/home/dcic/archivesspace/logs/archivesspace.out state=present owner=dcic group=dcic
+
+
+  - name: Start ArchiveSpace
+    command: ./archivesspace.sh
+    sudo_user: dcic
+    args:
+      chdir: /home/dcic/archivesspace
